@@ -1,0 +1,341 @@
+/* ——— Reset y variables ——— */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --rojo: #c1121f;
+  --azul: #0039a6;
+  --gris-claro: #f5f5f5;
+  --texto: #333;
+  --primario: var(--rojo);
+  --secundario: var(--azul);
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ——— Header en línea ——— */
+.site-header {
+  background: var(--secundario);
+  padding: 1rem 0;
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-header .logo {
+  height: 100px;
+}
+.site-header {
+  /* Deja esto para que el degradado cubra todo el header */
+  background: linear-gradient(
+    135deg,
+    var(--primario) 0%,
+    var(--primario) 50%,
+    var(--secundario) 50%,
+    var(--secundario) 100%
+  );
+  padding: 1rem 0;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ——— Hero ——— */
+.hero {
+  background: var(--gris-claro);
+  padding: 4rem 0;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* ——— Grid de competencias (cards) ——— */
+.features {
+  padding: 3rem 0;
+}
+.features .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.card h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+.card p {
+  margin-bottom: 1.25rem;
+  color: var(--secundario);
+  font-weight: 500;
+}
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--primario);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* ——— Footer ——— */
+.site-footer {
+  background: #222;
+  color: #aaa;
+  text-align: center;
+  padding: 1rem 0;
+}
+/* —— Tabs Styling —— */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.tab-button {
+  flex: 1;
+  padding: 0.75rem;
+  background: var(--gris-claro);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.tab-button.active {
+  background: var(--primario);
+  color: #fff;
+}
+.tab-content.hidden {
+  display: none;
+}
+/* —— Accordion dentro de .features —— */
+.accordion details {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background: #fafafa;
+  overflow: hidden;
+}
+.accordion summary {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  position: relative;
+  background: var(--gris-claro);
+}
+.accordion summary::-webkit-details-marker { display: none; }
+.accordion summary:after {
+  content: '▸';
+  position: absolute;
+  right: 1rem;
+  transition: transform 0.2s;
+}
+.accordion details[open] > summary:after {
+  transform: rotate(90deg);
+}
+
+.accordion .modalidad details {
+  margin: 0.5rem 0 0.5rem 1rem;
+  background: #fff;
+}
+.accordion .modalidad summary {
+  padding: 0.5rem 1rem;
+  background: #eee;
+  font-weight: 500;
+}
+
+/* Tablas dentro del acordeón */
+.accordion table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1rem;
+}
+.accordion th, .accordion td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.accordion th {
+  background: #f7f7f7;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.accordion tbody tr:nth-child(even) { background: #fff; }
+.accordion tbody tr:hover { background: #f1f1f1; }
+/* 🔧 Override sólo para la sección de resultados */
+#resultados .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;    /* separa filtros y acordeón */
+}
+
+/* Ajusta el ancho del formulario de filtros si quieres */
+#resultados .filters {
+  align-self: flex-start; /* alinea el form al inicio */
+  width: 100%;
+  max-width: 600px;
+}
+.btn.disabled,
+
+.btn[aria-disabled="true"] {
+  background: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.7;
+}
+/* — Botón hamburguesa — */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px;
+  background: #fff;
+  transition: background 0.3s;
+}
+
+/* — Estilos para móvil (hasta 768px) — */
+@media (max-width: 768px) {
+  /* Mostrar botón */
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 1.2rem;
+    right: 1rem;
+  }
+
+  /* Esconder nav por defecto */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: var(--secundario);
+    flex-direction: column;
+    align-items: start;
+    padding-top: 4rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* Cuando esté activo */
+  .nav.active {
+    transform: translateX(0);
+  }
+
+  /* Links en drawer */
+  .nav a {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .nav a:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+}
+.header-sticky-bar {
+  position: sticky;
+  top: 0;               /* pega al top de la ventana */
+  height: 6px;          /* alto de la barra */
+  background: linear-gradient(
+    135deg,
+    var(--primario) 0%,
+    var(--primario) 50%,
+    var(--secundario) 50%,
+    var(--secundario) 100%
+  );
+  width: 100%;          /* ocupa todo el ancho */
+  z-index: 999;         /* por encima del resto */
+}
+
+.tabla-deportistas {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.tabla-deportistas th, .tabla-deportistas td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+.tabla-deportistas th {
+  background-color: #f0f0f0;
+}
+/* ================================
+   Panel de opciones (botonera)
+   ================================ */
+   .panel-opciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  /* Botones de ancho fijo y centrado de texto */
+  .panel-opciones .btn {
+    display: inline-block;
+    width: 220px;           /* todos igual de ancho */
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+  
+  /* En pantallas medianas o más grandes, alineamos en fila */
+  @media (min-width: 768px) {
+    .panel-opciones {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  

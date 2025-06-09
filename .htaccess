@@ -1,0 +1,2 @@
+# Coloca esto en el .htaccess de tu raíz
+ErrorDocument 404 /error-404.php

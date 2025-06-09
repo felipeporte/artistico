@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendario General 2025</title>
+  <style>
+    /* Oculta todo hasta validar la clave */
+    #content { display: none; }
+
+    /* Reset básico */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.4;
+    }
+    header {
+      background: #1e73be;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    header {
+  position: relative;
+  background: #1e73be;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.federation-logo {
+  max-height: 80px;
+  width: auto;
+  margin-bottom: 0.5rem;
+}
+
+/* Franjas tricolor */
+.flag-stripe {
+  height: 4px;
+}
+.flag-stripe.red   { background: #d52b1e; }
+.flag-stripe.white { background: #fff; }
+.flag-stripe.blue  { background: #0033a0; }
+
+    h1 { font-size: 1.75rem; }
+
+    .calendar-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .calendar-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .calendar-card:hover { transform: translateY(-4px); }
+    .calendar-card.upcoming {
+      border: 2px solid #0033a0;
+      background: #4666ae;
+      color:#f5f5f5;
+      transform: scale(1.03);
+    }
+    .calendar-date {
+      background: #333;
+      color: #fff;
+      padding: 0.75rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .calendar-event {
+      font-size: 1.25rem;
+      margin: 0.75rem 1rem 0.5rem;
+    }
+    .calendar-details {
+      padding: 0 1rem 1rem;
+      font-size: 0.9rem;
+    }
+    .calendar-details p { margin-bottom: 0.5rem; }
+
+    @media (max-width:600px) {
+      h1 { font-size:1.5rem; }
+      .calendar-event { font-size:1.1rem; }
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.5);
+      display:flex; justify-content:center; align-items:center;
+      opacity:0; visibility:hidden;
+      transition: opacity 0.3s ease;
+    }
+    .modal.show { opacity:1; visibility:visible; }
+    .modal-content {
+      position: relative;
+      background:#fff;
+      border-radius:8px;
+      padding:1.5rem;
+      width:90%; max-width:500px;
+      animation:flipIn 0.6s both;
+    }
+    @keyframes flipIn {
+      from { transform:perspective(600px) rotateY(-90deg) scale(0.5); opacity:0; }
+      to   { transform:perspective(600px) rotateY(0) scale(1); opacity:1; }
+    }
+    .close {
+      position:absolute; top:0.5rem; right:1rem;
+      background:none; border:none;
+      font-size:1.5rem; cursor:pointer; color:#333;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1) Pedir clave
+      const correctPassword = "maiteam";
+      const userPwd = prompt("Introduce la clave de acceso:");
+      if (userPwd !== correctPassword) {
+        document.body.innerHTML = "<h2 style='text-align:center;margin-top:2rem;'>Acceso denegado</h2>";
+        return;
+      }
+      document.getElementById("content").style.display = "block";
+
+      // 2) Modal apertura
+      document.querySelectorAll('.calendar-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const modal = document.getElementById('modal');
+          const body = document.getElementById('modal-body');
+          const title = card.querySelector('.calendar-event').innerText;
+          const details = card.querySelector('.calendar-details').innerHTML;
+          body.innerHTML = `<h2>${title}</h2>${details}`;
+          modal.classList.add('show');
+        });
+      });
+      // 3) Modal cierre
+      document.querySelector('.modal .close').addEventListener('click', () => {
+        document.getElementById('modal').classList.remove('show');
+      });
+      document.getElementById('modal').addEventListener('click', e => {
+        if (e.target === e.currentTarget) {
+          e.currentTarget.classList.remove('show');
+        }
+      });
+      // 4) Resaltar próximo
+      (function(){
+        const cards = Array.from(document.querySelectorAll('.calendar-card'));
+        const today = new Date();
+        const next = cards
+          .map(c => ({c, d:new Date(c.dataset.start)}))
+          .filter(o=>o.d>=today)
+          .sort((a,b)=>a.d-b.d)[0];
+        if(next) next.c.classList.add('upcoming');
+      })();
+    });
+  </script>
+
+  <div id="content">
+    <header>
+      <div class="flag-stripe red"></div>
+      <div class="flag-stripe white"></div>
+      <div class="flag-stripe blue"></div>
+      <div class="header-content">
+        <img src="blancox2.png" alt="Logo Federación" class="federation-logo">
+        <h1>Calendario General 2025</h1>
+      </div>
+    </header>
+    
+    <div class="calendar-container">
+      <!-- 02/05–04/05 -->
+      <div class="calendar-card" data-start="2025-05-02">
+        <div class="calendar-date">02/05 – 04/05</div>
+        <h2 class="calendar-event">1º Copa de Figuras</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> Todos (Clasificatoria Panamericano)</p>
+          <p><strong>Zona:</strong> Todas</p>
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+      <!-- 12/05–18/05 -->
+      <div class="calendar-card" data-start="2025-05-12">
+        <div class="calendar-date">12/05 – 18/05</div>
+        <h2 class="calendar-event">AIS Trieste</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> Internacional (ITA)</p>
+          <p><strong>Organizador:</strong> WorldSkate</p>
+        </div>
+      </div>
+      <!-- 22/05–25/05 -->
+      <div class="calendar-card" data-start="2025-05-22">
+        <div class="calendar-date">22/05 – 25/05</div>
+        <h2 class="calendar-event">Clasificatorio Panamericano</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> Específico Internacional</p>
+          <p><strong>Zona:</strong> Stgo</p>
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+      <!-- 20/05–01/06 -->
+      <div class="calendar-card" data-start="2025-05-20">
+        <div class="calendar-date">20/05 – 01/06</div>
+        <h2 class="calendar-event">1º Ranking Formativo, Intermedio y Escuelas</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Norcosta</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 09/06–15/06 -->
+      <div class="calendar-card" data-start="2025-06-09">
+        <div class="calendar-date">09/06 – 15/06</div>
+        <h2 class="calendar-event">Final WorldSkate Clasificados</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> EUR</p>
+          <p><strong>Organizador:</strong> WorldSkate</p>
+        </div>
+      </div>
+      <!-- 14/06–15/06 -->
+      <div class="calendar-card" data-start="2025-06-14">
+        <div class="calendar-date">14/06 – 15/06</div>
+        <h2 class="calendar-event">Clasificatorio JJPP Junior</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> Todo Competidor Sub23 (Sistema Excepcional para damas Freeskating)</p>
+          <p><strong>Zona:</strong> Centro</p>
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+      <!-- 26/06–04/07 -->
+      <div class="calendar-card" data-start="2025-06-26">
+        <div class="calendar-date">26/06 – 04/07</div>
+        <h2 class="calendar-event">Panamericano Naciones – Clubes</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> BBAA</p>
+          <p><strong>Organizador:</strong> WorldSkate</p>
+        </div>
+      </div>
+      <!-- 17/07–20/07 -->
+      <div class="calendar-card" data-start="2025-07-17">
+        <div class="calendar-date">17/07 – 20/07</div>
+        <h2 class="calendar-event">1º Ranking Formativo, Intermedio y Escuelas</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Sur</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 24/07–27/07 -->
+      <div class="calendar-card" data-start="2025-07-24">
+        <div class="calendar-date">24/07 – 27/07</div>
+        <h2 class="calendar-event">1º Ranking Escuelas</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Centro</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 31/07–03/08 -->
+      <div class="calendar-card" data-start="2025-07-31">
+        <div class="calendar-date">31/07 – 03/08</div>
+        <h2 class="calendar-event">1º Ranking Promoción</h2>
+        <div class="calendar-details">
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+      <!-- 07/08–10/08 -->
+      <div class="calendar-card" data-start="2025-08-07">
+        <div class="calendar-date">07/08 – 10/08</div>
+        <h2 class="calendar-event">Clasificatorio Mundial – Juegos Bolivarianos</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> Internacional</p>
+          <p><strong>Zona:</strong> Stgo</p>
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+      <!-- 21/08–22/08 -->
+      <div class="calendar-card" data-start="2025-08-21">
+        <div class="calendar-date">21/08 – 22/08</div>
+        <h2 class="calendar-event">JJPP Junior Internacional</h2>
+        <div class="calendar-details">
+          <p><strong>Evento:</strong> ASU Panam</p>
+        </div>
+      </div>
+      <!-- 28/08–31/08 -->
+      <div class="calendar-card" data-start="2025-08-28">
+        <div class="calendar-date">28/08 – 31/08</div>
+        <h2 class="calendar-event">1º Ranking Formativo e Intermedio</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Centro</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 05/09–07/09 -->
+      <div class="calendar-card" data-start="2025-09-05">
+        <div class="calendar-date">05/09 – 07/09</div>
+        <h2 class="calendar-event">2ª Copa de Figuras</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> Todos (Clasificatoria Sudamericano y Mundial)</p>
+          <p><strong>Zona:</strong> Todas</p>
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+      <!-- 11/09–14/09 -->
+      <div class="calendar-card" data-start="2025-09-11">
+        <div class="calendar-date">11/09 – 14/09</div>
+        <h2 class="calendar-event">Campeonato Nacional y Clasificatorio Sudamericano</h2>
+        <div class="calendar-details">
+          <p><strong>Nivel:</strong> Internacional</p>
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+      <!-- 25/09–28/09 -->
+      <div class="calendar-card" data-start="2025-09-25">
+        <div class="calendar-date">25/09 – 28/09</div>
+        <h2 class="calendar-event">2º Ranking Formativo, Intermedio y Escuelas</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Norcosta</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 02/10–05/10 -->
+      <div class="calendar-card" data-start="2025-10-02">
+        <div class="calendar-date">02/10 – 05/10</div>
+        <h2 class="calendar-event">2º Ranking Promoción</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Sur</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 09/10–12/10 -->
+      <div class="calendar-card" data-start="2025-10-09">
+        <div class="calendar-date">09/10 – 12/10</div>
+        <h2 class="calendar-event">2º Ranking Formativo, Intermedio y Escuelas</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Sur</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 29/10–02/11 -->
+      <div class="calendar-card" data-start="2025-10-29">
+        <div class="calendar-date">29/10 – 02/11</div>
+        <h2 class="calendar-event">2º Ranking Formativo, Intermedio y Escuelas</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Centro</p>
+          <p><strong>Organizador:</strong> Zona</p>
+        </div>
+      </div>
+      <!-- 17/11–23/11 -->
+      <div class="calendar-card" data-start="2025-11-17">
+        <div class="calendar-date">17/11 – 23/11</div>
+        <h2 class="calendar-event">Campeonato Nacional Formativo, Intermedio, Escuelas y Promoción</h2>
+        <div class="calendar-details">
+          <p><strong>Zona:</strong> Todas</p>
+          <p><strong>Organizador:</strong> Federación</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <button class="close">&times;</button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
