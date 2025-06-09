@@ -1,13 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "pc-sync-jobs",
-  "private_key_id": "59d65b1425e285085f037a3a7ff3f99ee33ad4d0",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCZG8jRnyGeCfut\nAlH4hEvvXMjCBZ+Sq7T0/yaty60gdICqMPp4jHq9pojDfdJVD0wrZxcOSJRcO7vC\ny7+rxs1N+UsNfsIkrsKEc2/czil35TNzTorQ6kOno348CioaZ8nTPpuKww0eIDHx\nYs7dN91TFe10YSNaKYYmPCbOl/DNbByutv1jpvH1Y0VTovjxEbUQpaADh6cmwfuJ\n+kkTHCJb/ELnjHkXUMDSY596cYKxNnNbf6gaqkK/+sKJzsCMhlwrypIgT/Seb2Th\nFsj2R2uzRUyjqdKeIjjmVF7/La19aSx1RLBX+jL7pEBfgWEeGQumb7L4Vct/n4DC\n/zgLU71jAgMBAAECggEAIItt39Tl9exkUU2lc+BXLb14tPkyBqC1+b/Ejnu1RKlO\n8h4wF3Cw5GAiQP+dNlRmmfEzTudxlbtiuVDK4K4E1NaxM+CmTtrQ4QuSkwpFeUVA\nbvmaezbYg6k2e3ejpHI8TclIkbHNN4KbaxZYJ2CpDHCkRTEirRcXe0gc7ZwRZPCK\nTz0dUU+1+ny4PQKmNxtF6gb8z2XK/E/KVA8QHDrJJKTdj4xW/Y2VUbu6qsVHzScM\nviNhn86WyP1MT5yE2KtPfpMTpQb15Prd9gWYuqv0WHHxJG8JJvsgIAUvG4UqRJWq\n+IXAlXnXL1VguF3Swxz0zd3bx1cjTq7i1SlrqPkb6QKBgQDQboGbQJ/8ySRxKnUq\nPrzKO63T2WCizB07VRZgOHjuAPTlKAyZ+Jvdd6DCng8OMeqXGNOEfrkTgucML5mc\nkXOni4oJdA33bxxxma0J/vUTKEDQNI8yO1bC8PDevyeuyEp7cRM7KGGFgstZSzRp\nFzsTBsedwA7e5jbXVwr7xpCDKQKBgQC8DQ7FuQv813D+YK3rCdC7SQUpGVXqx9ft\nkqbEMiQoaW+mzqJ+NgtAvYb0qw/UvRBgS5nw7A1v+Ey9WLHR12/yecdVe2Q8Yl7Q\nT0b/7s9MsRbaKvo3mawipN1KtIKFYNqFbDrrgG3DttKGXbvvh1YVm3tljQ0pq0uU\nevREKdg5qwKBgFIVAsNyOs8hI1HRp5yAYna98+G2/ICAI47nHk28T5tjEw5frD7C\nkhcwckXSWxl6/OiOJVZLVXVimrzIzhTDjylPIYhBhPKJdkkifOuv1TG7K3MTD8V3\nat6QZjtCSk1hoTtlt24Xo/ghHxXGMRilxmTiyZ/NL84GGVjKdY/bjbOpAoGADZVr\n4cByKztswBM/vOCioUSvCL75w9HXuSOExFtS3VBwbj4y4qcIvQ5ztyy8IgPeMPaF\nEjAa8GGhOXQ0tBG51mwRiA03ulzouGdhm48mjkWkfvHnzShelMoP6huL6hKK9mRR\nBT3rr91+65HNx4mhIEJw8W706nOjLACNsHbNVa0CgYEApAeQyp8mmBCVTLtrFyJw\n1k/b8r42d3W//GMtAoqjmH+e+ZZRZd5B+vbuEXibC8G167zlRvislo4DHpY774gI\n8ENWF4jFkdycbvzVh7Kbk29Ej5VdWXhZrBsqZCgXIkK0MZzWoJfqXNOkV/m9uibY\nc0H5GYZzJrBXpDItSscxkuQ=\n-----END PRIVATE KEY-----\n",
-  "client_email": "artistico-resultado@pc-sync-jobs.iam.gserviceaccount.com",
-  "client_id": "102720080128795440283",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/artistico-resultado%40pc-sync-jobs.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
+Privado
