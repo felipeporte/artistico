@@ -10,12 +10,7 @@ function enviarCorreoRecuperacion($correo, $link) {
     try {
         // Configuración SMTP de Zoho
         $mail->isSMTP();
-        $mail->Host       = 'smtp.zoho.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'comisiontecnica@artistico.cl';
-        $mail->Password   = 'pimQyNkw49SU'; // tu contraseña de aplicación
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port       = 465;
+    // SECRETO
 
         // Correo del remitente
         $mail->setFrom('comisiontecnica@artistico.cl', 'Soporte Artistico');
