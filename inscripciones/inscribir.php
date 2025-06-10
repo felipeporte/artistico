@@ -7,7 +7,7 @@ if (!isset($_SESSION['club_id'])) {
 
 date_default_timezone_set('America/Santiago');
 // Definir fecha límite
-$fecha_limite = strtotime("2025-05-14 6:59:59");
+$fecha_limite = strtotime("2025-06-20 6:59:59");
 $fecha_actual = time();
 $inscripciones_cerradas = $fecha_actual > $fecha_limite;
 
@@ -31,7 +31,7 @@ function calcularCategoriaPorEdad($fecha_nacimiento, $anio, $modalidad = '', $ni
 
     // Parche: si es freeskaing escuela d y edad 17 o más → categoría Senior
     if (strtolower($modalidad) === 'freeskating' && strtolower($nivel) === 'escuela' && strtolower($subnivel) === 'd' && $edad >= 17) {
-        return "Senior";
+        return "Todo Competidor";
     }
 
     
@@ -87,7 +87,7 @@ if (isset($_POST['inscribir'])) {
         $categoria = calcularCategoriaPorEdad($fecha_nac, $anio_competencia, $modalidad, $nivel_text, $subnivel);
         if (!$categoria) {
             $errors[] = "El deportista no cumple la edad mínima para inscribirse.";
-        } elseif (!puedeInscribirse($pdo, $nivel_id, $fecha_nac, $anio_competencia, $modalidad, $nivel_text, $subnivel)) {
+        } elseif ($categoria !== "Todo Competidor" && !puedeInscribirse($pdo, $nivel_id, $fecha_nac, $anio_competencia, $modalidad, $nivel_text, $subnivel)) {
             $stmt = $pdo->prepare(
                 "SELECT c.nombre_categoria
                   FROM nivel_categoria nc
@@ -97,7 +97,7 @@ if (isset($_POST['inscribir'])) {
             );
             $stmt->execute([$nivel_id]);
             $permitidas = $stmt->fetchAll(PDO::FETCH_COLUMN);
-            $errors[] = "La categoría '{". htmlspecialchars($categoria) . "}' no está permitida. Permitidas: " . implode(', ', $permitidas);
+            $errors[] = "La categoría '". htmlspecialchars($categoria) . "' no está permitida. Permitidas: " . implode(', ', $permitidas);
         }
     }
 
@@ -273,7 +273,7 @@ if (isset($_POST['inscribir'])) {
                 $stmt = $pdo->prepare(
                   "SELECT id, nombre_evento
                     FROM competencias
-                   WHERE id=6 AND (zona = ? OR zona = 'TODAS')
+                   WHERE (zona = ? OR zona = 'TODAS') AND fecha_inicio >= NOW()
                    ORDER BY fecha_inicio DESC"
                 );
                 $stmt->execute([$zona_club]);
