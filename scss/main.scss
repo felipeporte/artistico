@@ -1,0 +1,14 @@
+// scss/main.scss
+
+// 🎨 Sobrescribir variables ANTES de importar Bootstrap
+$primary: #cc0000;
+$secondary: #333333;
+$font-family-base: 'Helvetica', sans-serif;
+
+// 📦 Importar Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// ✏️ Estilos propios opcionales
+body {
+  background-color: #f5f5f5;
+}

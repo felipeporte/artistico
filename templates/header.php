@@ -1,4 +1,6 @@
+
 <!-- includes/header.php -->
+<body class="d-flex flex-column min-vh-100">
 <header class="site-header">
   <div class="container">
    <a href="/index.php"> <img src="/blancox2.png" alt="Logo Federación" class="logo"> </a>

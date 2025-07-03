@@ -1,3 +1,1 @@
-SELECT SUM(monto_tota) AS monto_total
-FROM pagos_club
-WHERE competencia_id = 6;
+UPDATE competencias SET fecha_inicio = '2025-06-16', fecha_fin ='2025-06-19' WHERE id=7
